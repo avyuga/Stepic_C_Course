@@ -14,7 +14,8 @@ void list_destroy( struct list* list );
 struct list* list_last( struct list* list );
 void list_add_back( struct list** old, int64_t value );
 int64_t list_sum(const struct list* list);
-
+struct maybe_int64 list_at( const struct list* list, size_t idx );
+struct list* list_reverse( const struct list* list );
 
 
 #endif //TRY_TRY_LINKED_LISTS_H

@@ -1,6 +1,8 @@
 #include <malloc.h>
 #include <inttypes.h>
+#include <stdbool.h>
 #include "try_linked_lists.h"
+#include "../arrays/array.h"
 
 struct list {
     int64_t value;
@@ -78,4 +80,22 @@ int64_t list_sum(const struct list* list) {
         sum += current.value;
     }
     return sum;
+}
+
+struct maybe_int64 list_at( const struct list* list, size_t idx ) {
+    int64_t length = list_length(list);
+    if (idx < 0 || idx > length || list == NULL){
+        return none_int64;
+    }
+    struct list current = *list;
+    while (idx != 0){
+        idx -= 1;
+        current = *current.next;
+    }
+    return some_int64(current.value);
+}
+
+// создать перевернутую копию списка
+struct list* list_reverse( const struct list* list ) {
+
 }

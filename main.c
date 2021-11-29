@@ -5,12 +5,7 @@
 #include "arrays/array.h"
 #include "linked list/try_linked_lists.h"
 
-//
-///*  ---- constants ---- */
-//const struct maybe_int64 none_int64 = { 0 };
-//const struct maybe_array_int none_array_int = { {NULL, 0}, false };
-//
-//
+
 ///*  ---- structure int[][] ---- */
 //
 //struct array_array_int {
