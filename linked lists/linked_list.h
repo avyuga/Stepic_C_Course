@@ -2,8 +2,8 @@
 // Created by Anastasia on 29.11.2021.
 //
 
-#ifndef TRY_TRY_LINKED_LISTS_H
-#define TRY_TRY_LINKED_LISTS_H
+#ifndef TRY_LINKED_LIST_H
+#define TRY_LINKED_LIST_H
 
 struct list;
 
@@ -18,4 +18,4 @@ struct maybe_int64 list_at( const struct list* list, size_t idx );
 struct list* list_reverse( const struct list* list );
 
 
-#endif //TRY_TRY_LINKED_LISTS_H
+#endif //TRY_LINKED_LIST_H

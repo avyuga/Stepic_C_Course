@@ -3,7 +3,7 @@
 #include <malloc.h>
 #include <stdbool.h>
 #include "arrays/array.h"
-#include "linked list/try_linked_lists.h"
+#include "linked list/linked_list.h"
 
 
 ///*  ---- structure int[][] ---- */

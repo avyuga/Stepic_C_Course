@@ -1,7 +1,7 @@
 #include <malloc.h>
 #include <inttypes.h>
 #include <stdbool.h>
-#include "try_linked_lists.h"
+#include "linked_list.h"
 #include "../arrays/array.h"
 
 struct list {
