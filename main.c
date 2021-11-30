@@ -103,7 +103,7 @@ void array_array_int_free( struct array_array_int array ) {
         array_int_free(*(array.data + i));
     }
     //free(array.data);
-    free(&array);
+    //free(&array);
 }
 
 int main(){
@@ -117,12 +117,3 @@ int main(){
 
     return 0;
 }
-
-
-//int main(){
-//    struct list* leaf = node_create(24);
-//    list_add_front(&leaf, 2);
-//    list_add_front(&leaf, 1);
-//    struct list* list = list_read();
-//    return 0;
-//}
