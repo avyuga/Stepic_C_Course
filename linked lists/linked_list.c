@@ -1,6 +1,7 @@
 #include <malloc.h>
 #include <inttypes.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include "linked_list.h"
 #include "../arrays/array.h"
 
@@ -96,6 +97,50 @@ struct maybe_int64 list_at( const struct list* list, size_t idx ) {
 }
 
 // создать перевернутую копию списка
-struct list* list_reverse( const struct list* list ) {
+void list_add_front( struct list** old, int64_t value );
 
+struct list* list_reverse( const struct list* list ) {
+    if (list == NULL){
+        return NULL;
+    }
+    struct list* reversed = (struct list*)malloc(sizeof(struct list));
+    int64_t counter = 0;
+    while (list != NULL){
+        if (counter == 0){
+            reversed->value = list->value;
+            reversed->next = NULL;
+        } else {
+            list_add_front(&reversed, list->value);
+        }
+        if (list->next != NULL){
+            list = list->next;
+        } else break;
+        counter++;
+    }
+    return reversed;
 }
+struct maybe_int64 maybe_read_int64() {
+    int64_t x;
+    int64_t i = scanf("%" SCNd64, &x);
+    if (x == EOF || i < 0){
+        return none_int64;
+    } else{
+        return some_int64(x);
+    }
+}
+
+struct list* list_read() {
+    struct list* list = NULL;
+    struct maybe_int64 last;
+    while (true){
+        last = maybe_read_int64();
+        if (last.valid) {
+            if (list != NULL) {
+                list->next = node_create(last.value);
+            } else list = node_create(last.value);
+        } else break;
+    }
+    return list;
+}
+
+

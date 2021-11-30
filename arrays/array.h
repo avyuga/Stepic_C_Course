@@ -4,11 +4,23 @@
 size_t read_size();
 int64_t read_int64();
 
-struct maybe_int64{};
-struct array_int{};
-struct maybe_array_int{};
-const struct maybe_int64 none_int64 = { 0 };
-const struct maybe_array_int none_array_int = { {NULL, 0}, false };
+struct maybe_int64 {
+    int64_t value;
+    bool valid;
+};
+
+struct array_int{
+    int64_t* data;
+    size_t size;
+};
+
+struct maybe_array_int {
+    struct array_int value;
+    bool valid;
+};
+
+extern const struct maybe_int64 none_int64;
+extern const struct maybe_array_int none_array_int;
 
 struct maybe_int64 array_int_get(struct array_int a, size_t i);
 struct maybe_int64 some_int64(int64_t i);

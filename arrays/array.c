@@ -9,21 +9,6 @@
 #include "array.h"
 
 /*-----structures----*/
-struct maybe_int64 {
-    int64_t value;
-    bool valid;
-};
-
-struct array_int{
-    int64_t* data;
-    size_t size;
-};
-
-struct maybe_array_int {
-    struct array_int value;
-    bool valid;
-};
-
 
 size_t read_size() {
     size_t sz = 0;
@@ -36,6 +21,8 @@ int64_t read_int64(){
     return num;
 }
 
+const struct maybe_int64 none_int64 = { 0 };
+const struct maybe_array_int none_array_int = { {NULL, 0}, false };
 
 struct maybe_int64 some_int64(int64_t i) {
     return (struct maybe_int64) { i, true };

@@ -16,6 +16,7 @@ void list_add_back( struct list** old, int64_t value );
 int64_t list_sum(const struct list* list);
 struct maybe_int64 list_at( const struct list* list, size_t idx );
 struct list* list_reverse( const struct list* list );
-
+struct maybe_int64 maybe_read_int64();
+struct list* list_read();
 
 #endif //TRY_LINKED_LIST_H
