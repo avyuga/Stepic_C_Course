@@ -17,7 +17,7 @@ struct array_array_int {
 
 struct maybe_array_int array_array_int_get_row( struct array_array_int a, size_t i ) {
     if ( 0 <= i && i < a.size ) {
-        return some_array_int( a.data[i] );
+        return some_array_int(*(a.data + i));
     }
     else {
         return none_array_int;
@@ -53,7 +53,7 @@ bool array_array_int_set( struct array_array_int a, size_t i, size_t j, int64_t 
 struct array_array_int array_array_int_read() {
     size_t rows = read_size();
     struct array_array_int* a = (struct array_array_int*)malloc(sizeof(struct array_array_int*));
-    (*a).data = (struct array_int*)malloc(sizeof(struct array_int*));
+    (*a).data = (struct array_int*)malloc(rows*sizeof(struct array_int*));
     (*a).size = rows;
     if (rows > 0) {
         for (size_t i = 0; i < rows; i++) {
@@ -111,10 +111,12 @@ void array_array_int_free( struct array_array_int array ) {
 
 int main(){
     struct array_array_int array = array_array_int_read();
+    printf("%s", "array read \n");
     array_array_int_print(array);
     struct maybe_int64 m = array_array_int_min( array );
     if (m.valid) {
         array_array_int_normalize( array, m.value );
+        printf("%s", "array normalized \n");
         array_array_int_print(array);
     }
     array_array_int_free( array );
