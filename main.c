@@ -16,13 +16,17 @@ struct array_array_int {
 /*  --- строки ---  */
 
 struct maybe_array_int array_array_int_get_row( struct array_array_int a, size_t i ) {
-    if ( 0 <= i && i < a.size ) { return some_array_int( a.data[i] ); }
-    else { return none_array_int; }
+    if ( 0 <= i && i < a.size ) {
+        return some_array_int( a.data[i] );
+    }
+    else {
+        return none_array_int;
+    }
 }
 
 bool array_array_int_set_row( struct array_array_int a, size_t i, struct array_int value ) {
     if (0 <= i && i < a.size) {
-        a.data[i] = *((struct array_int*)malloc(sizeof(struct array_int)));
+        a.data[i] = *((struct array_int*)malloc(sizeof(struct array_int*)));
         *(a.data + i) = value;
         return true;
     }
@@ -48,8 +52,8 @@ bool array_array_int_set( struct array_array_int a, size_t i, size_t j, int64_t 
 /*  --- read/print ---  */
 struct array_array_int array_array_int_read() {
     size_t rows = read_size();
-    struct array_array_int* a = (struct array_array_int*)malloc(sizeof(struct array_array_int));
-    (*a).data = (struct array_int*)malloc(sizeof(struct array_int));
+    struct array_array_int* a = (struct array_array_int*)malloc(sizeof(struct array_array_int*));
+    (*a).data = (struct array_int*)malloc(sizeof(struct array_int*));
     (*a).size = rows;
     if (rows > 0) {
         for (size_t i = 0; i < rows; i++) {
@@ -93,7 +97,7 @@ void array_array_int_normalize( struct array_array_int array, int64_t m) {
     for (size_t i = 0; i < array.size; i = i + 1) {
         const struct maybe_array_int cur_row = array_array_int_get_row( array, i );
         if (cur_row.valid) {
-            array_int_normalize( cur_row.value, m );
+            array_int_normalize(cur_row.value, m);
         }
     }
 }
@@ -102,12 +106,12 @@ void array_array_int_free( struct array_array_int array ) {
     for (size_t i = 0; i < array.size; i++){
         array_int_free(*(array.data + i));
     }
-    //free(array.data);
-    //free(&array);
+    free(array.data);
 }
 
 int main(){
     struct array_array_int array = array_array_int_read();
+    array_array_int_print(array);
     struct maybe_int64 m = array_array_int_min( array );
     if (m.valid) {
         array_array_int_normalize( array, m.value );

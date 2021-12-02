@@ -94,6 +94,6 @@ void array_int_free( struct array_int a ) {
 
 void array_int_normalize( struct array_int array, int64_t m ) {
     for (size_t i = 0; i < array.size; i = i + 1) {
-        array.data[i] = array.data[i] - m;
+        *(array.data + i) = *(array.data + i) - m;
     }
 }
