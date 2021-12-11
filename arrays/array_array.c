@@ -101,7 +101,7 @@ void array_array_int_normalize( struct array_array_int array, int64_t m) {
 
 void array_array_int_free( struct array_array_int array ) {
     for (size_t i = 0; i < array.size; i++){
-        array_int_free(*(array.data + i));
+        array_int_free(array.data + i);
     }
     free(array.data);
 }

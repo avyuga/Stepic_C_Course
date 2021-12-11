@@ -85,10 +85,10 @@ struct maybe_int64 array_int_min( struct array_int array ) {
     }
 }
 
-void array_int_free( struct array_int a ) {
-    if ( a.size > 0 ) {
-        free(a.data);
-        a.size = 0;
+void array_int_free( struct array_int* a ) {
+    if ( a->size > 0 ) {
+        free(a->data);
+        a->size = 0;
     }
 }
 
