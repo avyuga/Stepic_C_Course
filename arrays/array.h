@@ -1,6 +1,8 @@
 #ifndef TRY_ARRAY_H
 #define TRY_ARRAY_H
 
+#include <stdbool.h>
+
 size_t read_size();
 int64_t read_int64();
 
