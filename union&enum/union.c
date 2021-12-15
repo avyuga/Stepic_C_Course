@@ -42,10 +42,16 @@ void print(struct either_int_string e) {
 
 // скопировать в кучу
 struct heap_string halloc( const char* s ){
-
+    size_t counter= 0;
+    while (s[counter] != '\0') counter++;
+    counter++; // с учетом нуль-терминатора
+    struct heap_string result;
+    result.addr = malloc(counter*sizeof(char));
+    for (size_t i = 0; i < counter; i++) result.addr[i] = s[i];
+    return result;
 }
 
 // освободить память
 void heap_string_free( struct heap_string h ){
-
+    free(h.addr);
 }
