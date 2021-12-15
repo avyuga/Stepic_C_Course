@@ -51,12 +51,20 @@ bool stack_push( struct stack* s, int64_t value ) {
 // Вынуть значение с вершины стека. Может вернуть none_int64
 struct maybe_int64 stack_pop( struct stack* s ){
     if (stack_is_empty(s)) return none_int64;
-    return array_int_get(s->data, 0);
+    struct maybe_int64 result = some_int64(*(s->data.data));
+    struct array_int temp = array_int_create(s->data.size);
+    for (size_t i =0; i<s->count; i++){
+        *(temp.data+i) = *(s->data.data+i+1);
+    }
+    array_int_free(&(s->data));
+    s->data = temp;
+    s->count--;
+    return result;
 }
 
 void stack_print( const struct stack* s ) {
-    for (size_t i = 0; i < stack_count( s ); i = i + 1 ) {
-        printf("%" PRId64, array_int_get( s->data, i).value );
+    for (size_t i = 0; i < stack_count(s); i = i + 1 ) {
+        printf("%" PRId64, array_int_get(s->data, i).value );
         printf(" ");
     }
 }
