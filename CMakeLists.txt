@@ -11,5 +11,5 @@ add_executable(Stepic_C_Course
         arrays/array.h
         "linked lists/linked_list.c"
         "linked lists/linked_list.h"
-        main.c arrays/array_array.h arrays/array_array.c stack/stack.h stack/stack.c)
+        main.c arrays/array_array.h arrays/array_array.c stack/stack.h stack/stack.c union&enum/union.c union&enum/union.h)
 
