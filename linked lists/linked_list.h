@@ -5,7 +5,10 @@
 #ifndef TRY_LINKED_LIST_H
 #define TRY_LINKED_LIST_H
 
-struct list;
+struct list {
+    int64_t value;
+    struct list* next;
+};
 
 struct list* node_create( int64_t value );
 void list_add_front( struct list** old, int64_t value );

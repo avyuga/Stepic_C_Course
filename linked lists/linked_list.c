@@ -5,10 +5,6 @@
 #include "linked_list.h"
 #include "../arrays/array.h"
 
-struct list {
-    int64_t value;
-    struct list* next;
-};
 
 struct list* node_create( int64_t value ) {
     struct list* result = (struct list*)malloc(sizeof(struct list));
@@ -96,8 +92,6 @@ struct maybe_int64 list_at( const struct list* list, size_t idx ) {
     return some_int64(current.value);
 }
 
-// создать перевернутую копию списка
-void list_add_front( struct list** old, int64_t value );
 
 struct list* list_reverse( const struct list* list ) {
     if (list == NULL){
